@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.11"
 django = "*"
 djangorestframework = "*"
+django-cors-headers = "*"
 
 
 
