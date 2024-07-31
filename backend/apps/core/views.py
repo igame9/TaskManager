@@ -1,3 +1,5 @@
-from django.shortcuts import render
+from django.http import JsonResponse
 
-# Create your views here.
+
+def set_csrf(request):
+    return JsonResponse({"data": {"message": "CSRF cookie set"}})
