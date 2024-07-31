@@ -17,6 +17,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'apps.accounts',
+    'apps.core',
+    'apps.desk',
+    'apps.task',
+    'apps.work_space',
 ]
 
 MIDDLEWARE = [
@@ -101,3 +107,6 @@ APPEND_SLASH = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
