@@ -7,4 +7,5 @@ from apps.task import urls as task_urls
 
 urlpatterns = [
     path("api/csrf/", set_csrf, name="csrf"),
+    path("api/accounts/", include(accounts_urls)),
 ]
