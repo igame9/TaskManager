@@ -21,7 +21,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-    'apps.accounts',
     'apps.core',
     'apps.desk',
     'apps.task',
@@ -132,5 +131,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
-
-AUTH_USER_MODEL = "accounts.ApplicationUser"
