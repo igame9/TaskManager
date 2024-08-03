@@ -113,7 +113,9 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': 'key',
-    'VERIFYING_KEY': None,
+    'VERIFYING_KEY': 'key',
+    'AUDIENCE': 'task_manager',
+    'ISSUER': 'auth-service',
 }
 
 APPEND_SLASH = True
