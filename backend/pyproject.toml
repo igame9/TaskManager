@@ -10,7 +10,7 @@ python = "^3.11"
 django = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
-djangorestframework-simplejwt = "*"
+pyjwt = "*"
 djangorestframework-camel-case  = "*"
 
 
