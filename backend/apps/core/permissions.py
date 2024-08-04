@@ -1,23 +1,25 @@
 from rest_framework.permissions import BasePermission
 import jwt
-from settings import settings
+from settings.settings import TOKEN_INFO
 
 
 class UserWithToken(BasePermission):
 
     def has_permission(self, request, view):
 
-        token = request.headers.get("Authorization", None)
+        header_token = request.headers.get("Authorization", None)
+
+        token = str(header_token).split("JWT")[1].lstrip()
 
         if not token:
             return False
 
         try:
-            decoded_token = jwt.decode(jwt=str(token).split("JWT")[1].lstrip(),
-                                       key=settings.SIMPLE_JWT['SIGNING_KEY'],
-                                       algorithms=[settings.SIMPLE_JWT['ALGORITHM']],
-                                       issuer=settings.SIMPLE_JWT["ISSUER"],
-                                       audience=settings.SIMPLE_JWT["AUDIENCE"])
+            decoded_token = jwt.decode(jwt=token,
+                                       key=TOKEN_INFO['SIGNING_KEY'],
+                                       algorithms=[TOKEN_INFO['ALGORITHM']],
+                                       issuer=TOKEN_INFO["ISSUER"],
+                                       audience=TOKEN_INFO["AUDIENCE"])
             print(decoded_token)
 
             return True

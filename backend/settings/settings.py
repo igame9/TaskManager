@@ -19,7 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework_simplejwt',
+    # 'rest_framework_simplejwt',
     'corsheaders',
     'apps.core',
     'apps.desk',
@@ -102,15 +102,15 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseMultiPartParser',
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
     ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ),
     'DEFAULT_PERMISSION_CLASSES': (
         'apps.core.permissions.UserWithToken',
     ),
 }
 
-SIMPLE_JWT = {
+TOKEN_INFO = {
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': 'key',
     'VERIFYING_KEY': 'key',
