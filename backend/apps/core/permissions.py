@@ -33,3 +33,5 @@ class UserWithToken(BasePermission):
         except jwt.InvalidTokenError as ex:
             print(ex)
             return False
+        except KeyError:
+            return False
