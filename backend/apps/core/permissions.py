@@ -20,8 +20,9 @@ class UserWithToken(BasePermission):
                                        algorithms=[TOKEN_INFO['ALGORITHM']],
                                        issuer=TOKEN_INFO["ISSUER"],
                                        audience=TOKEN_INFO["AUDIENCE"])
-            print(decoded_token)
 
+            request.user_id = decoded_token["user_id"]
+            request.email = decoded_token["email"]
             return True
         except jwt.ExpiredSignatureError as ex:
             print(ex)
