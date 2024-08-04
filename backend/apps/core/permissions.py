@@ -1,37 +1,26 @@
 from rest_framework.permissions import BasePermission
-import jwt
-from settings.settings import TOKEN_INFO
+from apps.core.services import TokenDecoderFactory
+from settings.settings import TOKEN_INFO, TOKEN_HEADER_PREFIX
 
 
 class UserWithToken(BasePermission):
 
     def has_permission(self, request, view):
-
         header_token = request.headers.get("Authorization", None)
 
-        token = str(header_token).split("JWT")[1].lstrip()
+        token = str(header_token).split(f"{TOKEN_HEADER_PREFIX}")[1].lstrip()
 
         if not token:
             return False
 
-        try:
-            decoded_token = jwt.decode(jwt=token,
-                                       key=TOKEN_INFO['SIGNING_KEY'],
-                                       algorithms=[TOKEN_INFO['ALGORITHM']],
-                                       issuer=TOKEN_INFO["ISSUER"],
-                                       audience=TOKEN_INFO["AUDIENCE"])
+        token_decoder = TokenDecoderFactory.create_decoder(token_type=TOKEN_HEADER_PREFIX,
+                                                           token_info=TOKEN_INFO)
 
+        decoded_token = token_decoder.decode_token(token)
+
+        if decoded_token:
             request.user_id = decoded_token["user_id"]
             request.email = decoded_token["email"]
             return True
-        except jwt.ExpiredSignatureError as ex:
-            print(ex)
-            return False
-        except jwt.DecodeError as ex:
-            print(ex)
-            return False
-        except jwt.InvalidTokenError as ex:
-            print(ex)
-            return False
-        except KeyError:
-            return False
+
+        return False

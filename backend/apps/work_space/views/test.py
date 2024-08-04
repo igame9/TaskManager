@@ -6,8 +6,8 @@ from rest_framework import status
 class TestView(APIView):
 
     def post(self, request):
-        print(request.email)
-        print(request.user_id)
+        # print(request.email)
+        # print(request.user_id)
         answer = {
             "message": "Вы вошли в микросервис"
         }

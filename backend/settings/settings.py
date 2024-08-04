@@ -115,6 +115,8 @@ TOKEN_INFO = {
     'ISSUER': 'auth-service',
 }
 
+TOKEN_HEADER_PREFIX = "JWT"
+
 APPEND_SLASH = True
 
 STATIC_URL = 'static/'
