@@ -12,7 +12,7 @@ class WorkSpace(models.Model):
     name = models.CharField(
         max_length=50,
         default=None,
-        null=True,
+        null=False,
     )
 
-
+    created_at = models.DateTimeField(auto_now_add=True)
